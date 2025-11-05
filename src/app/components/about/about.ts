@@ -5,8 +5,215 @@ import { MaterialModule } from '../../material.module';
 @Component({
   selector: 'app-about',
   standalone: true,
-  imports: [CommonModule, MaterialModule]
+  imports: [CommonModule, MaterialModule],
+  template: `
+<div class="about-container">
+  <!--h1>Acerca de</h1-->
   
+  <mat-card class="profile-card">
+    <mat-card-content>
+      <div class="profile-content">
+        <div class="profile-header">
+          <img [src]="profile.photo" [alt]="profile.name" class="profile-photo">
+          <div class="profile-info">
+            <h2>{{profile.name}}</h2>
+            <p class="role">{{profile.role}}</p>
+          </div>
+        </div>
+
+        <div class="profile-section">
+          <h3><mat-icon>person</mat-icon> Sobre mí</h3>
+          <p>{{profile.about}}</p>
+        </div>
+
+        <div class="profile-section">
+          <h3><mat-icon>contact_mail</mat-icon> Información de Contacto</h3>
+          <div class="contact-info">
+            <div class="contact-item">
+              <mat-icon>email</mat-icon>
+              <span>{{profile.email}}</span>
+            </div>
+            <div class="contact-item">
+              <mat-icon>phone</mat-icon>
+              <span>{{profile.phone}}</span>
+            </div>
+            <div class="contact-item">
+              <mat-icon>location_on</mat-icon>
+              <span>{{profile.location}}</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="profile-section">
+          <h3><mat-icon>code</mat-icon> Habilidades</h3>
+          <div class="skills">
+            <mat-chip *ngFor="let skill of profile.skills">{{skill}}</mat-chip>
+          </div>
+        </div>
+
+        <div class="profile-section">
+          <h3><mat-icon>work</mat-icon> Experiencia</h3>
+          <div class="experience">
+            <div class="experience-item" *ngFor="let exp of profile.experience">
+              <div class="exp-year">{{exp.year}}</div>
+              <div class="exp-details">
+                <strong>{{exp.position}}</strong>
+                <p class="company">{{exp.company}}</p>
+                <p class="description" *ngIf="exp.description">{{exp.description}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>
+  `,
+  styles: [`
+.about-container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.about-container h1 {
+  font-size: 28px;
+  margin-bottom: 20px;
+  font-weight: 500;
+}
+
+.profile-content {
+  padding: 20px;
+}
+
+.profile-header {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  margin-bottom: 30px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.profile-photo {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.profile-info h2 {
+  margin: 0 0 8px 0;
+  font-size: 32px;
+}
+
+.role {
+  color: #666;
+  font-size: 18px;
+  margin: 0;
+}
+
+.profile-section {
+  margin-bottom: 30px;
+}
+
+.profile-section h3 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #3f51b5;
+  margin-bottom: 15px;
+  font-size: 20px;
+}
+
+.profile-section h3 mat-icon {
+  font-size: 24px;
+  height: 24px;
+  width: 24px;
+}
+
+.profile-section p {
+  line-height: 1.6;
+  color: #555;
+}
+
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #555;
+}
+
+.contact-item mat-icon {
+  color: #3f51b5;
+}
+
+.skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.skills mat-chip {
+  background-color: #e3f2fd;
+  color: #1976d2;
+}
+
+.experience-item {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.experience-item:last-child {
+  border-bottom: none;
+}
+
+.exp-year {
+  min-width: 120px;
+  color: #3f51b5;
+  font-weight: 500;
+}
+
+.exp-details strong {
+  display: block;
+  margin-bottom: 4px;
+  color: #333;
+}
+
+.exp-details .company {
+  margin: 4px 0;
+  color: #3f51b5;
+  font-weight: 500;
+}
+
+.exp-details .description {
+  margin: 8px 0 0 0;
+  color: #666;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+@media (max-width: 768px) {
+  .profile-header {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .experience-item {
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+  `]
 })
 export class AboutComponent {
   profile = {
