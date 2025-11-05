@@ -1,0 +1,68 @@
+<h2 mat-dialog-title>
+  {{product.title}}
+  <button mat-icon-button (click)="close()" class="close-button">
+    <mat-icon>close</mat-icon>
+  </button>
+</h2>
+
+<mat-dialog-content>
+  <div class="product-detail">
+    <div class="image-section">
+      <img [src]="selectedImage" [alt]="product.title" class="main-image">
+      <div class="thumbnails" *ngIf="product.images && product.images.length > 0">
+        <img 
+          *ngFor="let image of product.images" 
+          [src]="image" 
+          [alt]="product.title"
+          class="thumbnail"
+          [class.selected]="image === selectedImage"
+          (click)="selectImage(image)">
+      </div>
+    </div>
+
+    <div class="info-section">
+      <mat-card>
+        <mat-card-content>
+          <div class="info-row">
+            <span class="label">Descripción:</span>
+            <span>{{product.description}}</span>
+          </div>
+          
+          <div class="info-row">
+            <span class="label">Precio:</span>
+            <span class="price">${{product.price}}</span>
+          </div>
+
+          <div class="info-row">
+            <span class="label">Descuento:</span>
+            <span>{{product.discountPercentage}}%</span>
+          </div>
+
+          <div class="info-row">
+            <span class="label">Categoría:</span>
+            <mat-chip>{{product.category}}</mat-chip>
+          </div>
+
+          <div class="info-row">
+            <span class="label">Marca:</span>
+            <span>{{product.brand}}</span>
+          </div>
+
+          <div class="info-row">
+            <span class="label">Stock:</span>
+            <span [class.low-stock]="product.stock < 10">{{product.stock}} unidades</span>
+          </div>
+
+          <div class="info-row">
+            <span class="label">Calificación:</span>
+            <span class="rating">★ {{product.rating}}</span>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-raised-button color="primary" (click)="close()">Cerrar</button>
+</mat-dialog-actions>
