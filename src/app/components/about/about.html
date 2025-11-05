@@ -1,0 +1,60 @@
+<div class="about-container">
+  <!--h1>Acerca de</h1-->
+  
+  <mat-card class="profile-card">
+    <mat-card-content>
+      <div class="profile-content">
+        <div class="profile-header">
+          <img [src]="profile.photo" [alt]="profile.name" class="profile-photo">
+          <div class="profile-info">
+            <h2>{{profile.name}}</h2>
+            <p class="role">{{profile.role}}</p>
+          </div>
+        </div>
+
+        <div class="profile-section">
+          <h3><mat-icon>person</mat-icon> Sobre mí</h3>
+          <p>{{profile.about}}</p>
+        </div>
+
+        <div class="profile-section">
+          <h3><mat-icon>contact_mail</mat-icon> Información de Contacto</h3>
+          <div class="contact-info">
+            <div class="contact-item">
+              <mat-icon>email</mat-icon>
+              <span>{{profile.email}}</span>
+            </div>
+            <div class="contact-item">
+              <mat-icon>phone</mat-icon>
+              <span>{{profile.phone}}</span>
+            </div>
+            <div class="contact-item">
+              <mat-icon>location_on</mat-icon>
+              <span>{{profile.location}}</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="profile-section">
+          <h3><mat-icon>code</mat-icon> Habilidades</h3>
+          <div class="skills">
+            <mat-chip *ngFor="let skill of profile.skills">{{skill}}</mat-chip>
+          </div>
+        </div>
+
+        <div class="profile-section">
+          <h3><mat-icon>work</mat-icon> Experiencia</h3>
+          <div class="experience">
+            <div class="experience-item" *ngFor="let exp of profile.experience">
+              <div class="exp-year">{{exp.year}}</div>
+              <div class="exp-details">
+                <strong>{{exp.position}}</strong>
+                <p>{{exp.company}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>
