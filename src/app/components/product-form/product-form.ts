@@ -10,7 +10,7 @@ import { Product } from '../../services/products.service';
   standalone: true,
   imports: [CommonModule, MaterialModule, ReactiveFormsModule],
   template: `
-<h2 mat-dialog-title>{{isEditMode ? 'Editar Producto' : 'Nuevo Producto'}}</h2>
+<h2 mat-dialog-title>{{isEditMode ? 'Editar Producto' : 'Nuevo Producto22'}}</h2>
 
 <mat-dialog-content>
   <form [formGroup]="productForm" class="product-form">
